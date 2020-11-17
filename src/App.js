@@ -1,9 +1,22 @@
 import "./App.css";
+import UserForm from "./pages/UserForm";
+import Login from "./pages/Login";
+import { Switch, Link, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="App">
-      <header className="App-header"></header>
+    <div>
+      <Link to="/novo-usuário">Novo usuário</Link>
+      <Link to="/">Login</Link>
+
+      <Switch>
+        <Route path="/novo-usuário">
+          <UserForm />
+        </Route>
+        <Route exact path="/">
+          <Login />
+        </Route>
+      </Switch>
     </div>
   );
 };
