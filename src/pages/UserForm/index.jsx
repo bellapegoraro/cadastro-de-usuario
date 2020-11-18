@@ -2,8 +2,27 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { UserFormContainer } from "./userFormStyle";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import LockIcon from "@material-ui/icons/Lock";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
+import FaceIcon from "@material-ui/icons/Face";
+import EmailIcon from "@material-ui/icons/Email";
+
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
+}));
 
 const UserForm = () => {
+  const classes = useStyles();
   const schema = yup.object().shape({
     user: yup
       .string()
@@ -38,21 +57,99 @@ const UserForm = () => {
     <UserFormContainer className="divUserForm">
       <h2>Novo usuário: </h2>
       <form className="userForm" onSubmit={handleSubmit(handleForm)}>
-        <input name="user" placeholder="Usuário" ref={register} />
-        <p className="errors">{errors.user?.message}</p>
-        <input name="name" placeholder="Nome e Sobrenome" ref={register} />
-        <p className="errors">{errors.name?.message}</p>
-        <input name="email" placeholder="Email" ref={register} />
-        <p className="errors">{errors.email?.message}</p>
-        <input name="password" placeholder="Senha" ref={register} />
-        <p className="errors">{errors.password?.message}</p>
-        <input
-          name="confirmPassword"
-          placeholder="Confirme sua senha"
-          ref={register}
+        <TextField
+          margin="normal"
+          variant="outlined"
+          name="user"
+          label="Usuário"
+          error={!!errors.user}
+          helperText={errors.user?.message}
+          size="small"
+          inputRef={register}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <AccountCircle />
+              </InputAdornment>
+            ),
+          }}
         />
-        <p className="errors">{errors.confirmPassword?.message}</p>
-        <button type="submit">Cadastrar</button>
+        <TextField
+          margin="normal"
+          variant="outlined"
+          name="name"
+          label="Nome"
+          error={!!errors.name}
+          helperText={errors.name?.message}
+          size="small"
+          inputRef={register}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <FaceIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <TextField
+          margin="normal"
+          variant="outlined"
+          name="email"
+          label="Email"
+          error={!!errors.email}
+          helperText={errors.email?.message}
+          size="small"
+          inputRef={register}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <EmailIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <TextField
+          margin="normal"
+          variant="outlined"
+          name="password"
+          label="Senha"
+          error={!!errors.password}
+          helperText={errors.password?.message}
+          size="small"
+          inputRef={register}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <LockOpenIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <TextField
+          margin="normal"
+          variant="outlined"
+          name="confirmPassword"
+          label="Confirmar senha"
+          error={!!errors.confirmPassword}
+          helperText={errors.confirmPassword?.message}
+          size="small"
+          inputRef={register}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <LockIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          size="small"
+          className={classes.margin}
+        >
+          Cadastrar
+        </Button>
       </form>
     </UserFormContainer>
   );

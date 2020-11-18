@@ -6,12 +6,13 @@ export const LoginContainer = styled.div`
   width: 70vw;
   background-color: #eaeaea;
   justify-content: space-evenly;
-  height: 40vh;
+  height: 45vh;
   margin: 40% auto;
   border-radius: 20px;
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.6);
 
   h2 {
+    margin-bottom: 0;
     text-align: center;
     color: #444444;
   }
@@ -23,10 +24,8 @@ export const LoginContainer = styled.div`
     align-items: center;
     height: 30vh;
   }
-
   input {
-    width: 55vw;
-    height: 4.5vh;
+    width: 45vw;
   }
 
   button {
@@ -39,7 +38,11 @@ export const LoginContainer = styled.div`
     color: #444444;
   }
 
-  input,
+  button:hover {
+    background-color: #00deda;
+    color: #222222;
+  }
+
   button {
     border: none;
     border-radius: 10px;
@@ -47,11 +50,12 @@ export const LoginContainer = styled.div`
   }
 
   @media (min-width: 767px) {
-    margin: 25% auto;
+    margin: 15% auto;
     width: 50vw;
-    height: 40vh;
+    height: 55vh;
 
     h2 {
+      margin-top: 0;
       margin-bottom: 0;
     }
 
@@ -59,10 +63,11 @@ export const LoginContainer = styled.div`
       width: 50vw;
       height: 25vh;
     }
+
     input {
-      height: 5vh;
-      width: 35vw;
+      width: 30vw;
     }
+
     button {
       height: 5vh;
       width: 30vw;
@@ -71,14 +76,20 @@ export const LoginContainer = styled.div`
       text-transform: uppercase;
       font-size: 0.8em;
     }
+
+    button:hover {
+      background-color: #00deda;
+      color: #222222;
+    }
   }
 
   @media (min-width: 1024px) {
-    margin: 13% auto;
-    width: 28vw;
-    height: 40vh;
+    margin: 7% auto;
+    width: 25vw;
+    height: 50vh;
 
     h2 {
+      margin-top: 0;
       margin-bottom: 0;
       text-align: center;
       color: #444444;
@@ -86,19 +97,26 @@ export const LoginContainer = styled.div`
 
     form {
       margin-top: 0;
-      width: 28vw;
+      width: 25vw;
     }
 
     input {
-      width: 20vw;
+      width: 18vw;
     }
 
     button {
+      margin-top: 5%;
       width: 15vw;
       color: #444444;
       font-weight: bolder;
       text-transform: uppercase;
       font-size: 0.8em;
+      height: 7vh;
+    }
+
+    button:hover {
+      background-color: #00deda;
+      color: #222222;
     }
   }
 `;
