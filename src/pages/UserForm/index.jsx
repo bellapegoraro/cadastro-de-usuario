@@ -11,6 +11,9 @@ import LockIcon from "@material-ui/icons/Lock";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
 import EmailIcon from "@material-ui/icons/Email";
+import Axios from "axios";
+import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -22,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UserForm = () => {
+  const [error, setError] = useState({ valid: false });
+  const history = useHistory();
   const classes = useStyles();
   const schema = yup.object().shape({
     user: yup
@@ -51,7 +56,20 @@ const UserForm = () => {
   });
 
   const handleForm = (data) => {
-    console.log(data);
+    const url = "https://ka-users-api.herokuapp.com/users";
+    const newUser = { user: data };
+    Axios.post(url, newUser)
+      .then((res) => {
+        if (res.status === 201) {
+          history.push("/");
+        }
+      })
+      .catch((error) => {
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 2000);
+      });
   };
   return (
     <UserFormContainer className="divUserForm">
@@ -74,6 +92,7 @@ const UserForm = () => {
             ),
           }}
         />
+        {/* {error && <span>Usuário já utilizado</span>} */}
         <TextField
           margin="normal"
           variant="outlined"
