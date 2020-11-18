@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { LoginContainer } from "./loginStyle";
 
 const Login = () => {
   const schema = yup.object().shape({
@@ -22,11 +23,14 @@ const Login = () => {
     console.log(data);
   };
   return (
-    <form onSubmit={handleSubmit(handleForm)}>
-      <input name="user" placeholder="Usuário" ref={register} />
-      <input name="password" placeholder="Senha" ref={register} />
-      <button type="submit">Entrar</button>
-    </form>
+    <LoginContainer>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit(handleForm)}>
+        <input name="user" placeholder="Usuário" ref={register} />
+        <input name="password" placeholder="Senha" ref={register} />
+        <button type="submit">Entrar</button>
+      </form>
+    </LoginContainer>
   );
 };
 
