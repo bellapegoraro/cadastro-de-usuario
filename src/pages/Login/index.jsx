@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Axios from "axios";
+
 import { LoginContainer } from "./loginStyle";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -18,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = () => {
+const Login = ({ callback }) => {
+  const [error, setError] = useState({ status: false, message: "" });
   const classes = useStyles();
 
   const schema = yup.object().shape({
@@ -29,8 +33,22 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
   const handleForm = (data) => {
-    console.log(data);
+    const url = "https://ka-users-api.herokuapp.com/authenticate";
+    Axios.post(url, data)
+      .then((res) => {
+        window.localStorage.setItem("authToken", res.data.auth_token);
+        callback();
+      })
+      .catch((error) => {
+        if (error.response) {
+          setError({
+            status: true,
+            message: "Usuário ou senha incorretos",
+          });
+        }
+      });
   };
+
   return (
     <LoginContainer>
       <h2>Login</h2>
@@ -69,6 +87,7 @@ const Login = () => {
             ),
           }}
         />
+        {error.status && <span>{error.message}</span>}
         <Button
           type="submit"
           variant="contained"
