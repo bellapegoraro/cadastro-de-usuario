@@ -4,11 +4,11 @@ import UserForm from "./pages/UserForm";
 import Login from "./pages/Login";
 import { Switch, Link, Route, useHistory } from "react-router-dom";
 import Axios from "axios";
+import Users from "./pages/Users";
 
 const App = () => {
   const history = useHistory();
-  const [userList, setUserList] = useState([]);
-  const [authenticate, setAuthenticate] = useState(undefined);
+  const [authenticate, setAuthenticate] = useState(false);
 
   const CheckingLoggedIn = () => {
     const token = window.localStorage.getItem("authToken");
@@ -21,7 +21,7 @@ const App = () => {
       .then((res) => {
         console.log(res);
         if (res.status !== 400) {
-          setUserList(res.data);
+          setAuthenticate(true);
           history.push("/users");
         }
       })
@@ -49,7 +49,7 @@ const App = () => {
             <Login callback={CheckingLoggedIn} />
           </Route>
           <Route exact path="/users">
-            <div>Você está no user</div>
+            <Users auth={authenticate} />
           </Route>
         </Switch>
       </div>
