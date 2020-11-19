@@ -5,14 +5,14 @@ import Login from "./pages/Login";
 import { Switch, Link, Route, useHistory } from "react-router-dom";
 import Axios from "axios";
 import Users from "./pages/Users";
+import UserFeedbacks from "./pages/UserFeedbacks";
 
 const App = () => {
   const history = useHistory();
   const [authenticate, setAuthenticate] = useState(false);
+  const token = window.localStorage.getItem("authToken");
 
   const CheckingLoggedIn = () => {
-    const token = window.localStorage.getItem("authToken");
-
     Axios.get("https://ka-users-api.herokuapp.com/users", {
       headers: {
         Authorization: token,
@@ -52,6 +52,9 @@ const App = () => {
           </Route>
           <Route exact path="/users">
             <Users auth={authenticate} />
+          </Route>
+          <Route exact path="/user-feedback/:id">
+            <UserFeedbacks token={token} />
           </Route>
         </Switch>
       </div>
