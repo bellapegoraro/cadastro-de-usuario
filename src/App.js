@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UserForm from "./pages/UserForm";
 import Login from "./pages/Login";
 import { Switch, Link, Route, useHistory } from "react-router-dom";
@@ -29,6 +29,8 @@ const App = () => {
         history.push("/");
       });
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div className="App">
