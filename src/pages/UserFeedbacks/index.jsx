@@ -11,7 +11,7 @@ const columns = [
   { field: "grade", headerName: "Grade", width: 250 },
 ];
 
-const UserFeedbacks = ({ token }) => {
+const UserFeedbacks = () => {
   const [responseState, setResponse] = useState([]);
   const { id } = useParams();
 
@@ -20,17 +20,15 @@ const UserFeedbacks = ({ token }) => {
       `https://ka-users-api.herokuapp.com/users/${id}/feedbacks`,
       {
         headers: {
-          Authorization: token,
+          Authorization: window.localStorage.getItem("authToken"),
         },
       }
     );
-    console.log(response);
     setResponse([...responseState, ...response.data]);
   };
   useEffect(() => {
     getFeedbacks();
   }, []);
-  console.log(responseState);
   return (
     <>
       <FeedbackHeader id={id} />

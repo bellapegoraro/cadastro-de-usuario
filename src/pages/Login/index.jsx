@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Axios from "axios";
+
 import Header from "../../components/header";
 import { LoginContainer } from "./loginStyle";
 import TextField from "@material-ui/core/TextField";
@@ -22,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = ({ callback }) => {
+  const history = useHistory();
   const [error, setError] = useState({ status: false, message: "" });
   const classes = useStyles();
 
@@ -32,12 +35,14 @@ const Login = ({ callback }) => {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
+
+  //refatorar a handleForm
   const handleForm = (data) => {
     const url = "https://ka-users-api.herokuapp.com/authenticate";
     Axios.post(url, data)
       .then((res) => {
         window.localStorage.setItem("authToken", res.data.auth_token);
-        callback();
+        history.push("/users");
       })
       .catch((error) => {
         if (error.response) {
@@ -49,9 +54,7 @@ const Login = ({ callback }) => {
       });
   };
 
-  useEffect(() => {
-    callback();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
