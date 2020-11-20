@@ -1,17 +1,21 @@
 import { DataGrid } from "@material-ui/data-grid";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Axios from "axios";
+import { UserStyled } from "./userStyle";
+import UsersHeader from "./UsersHeader";
 
 const columns = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "name", headerName: "Name", width: 250 },
   { field: "email", headerName: "E-mail", width: 250 },
+  { field: "feedback", headerName: "Feedback", width: 250 },
 ];
 
 const Users = ({ auth }) => {
   const history = useHistory();
   const [userList, setUserList] = useState([]);
+  const [token, setToken] = useState("");
 
   const loadData = async () => {
     const token = window.localStorage.getItem("authToken");
@@ -32,29 +36,26 @@ const Users = ({ auth }) => {
       return;
     }
     loadData();
+    setToken(window.localStorage.getItem("authToken"));
   }, []);
 
   return (
-    <DataGrid
-      autoHeight
-      pagination
-      columns={columns}
-      loading={userList.length === 0 ? true : false}
-      rows={userList}
-      pageSize={10}
-      rowsPerPageOptions={[10, 50, 100]}
-      onRowClick={(param) => {
-        console.log(param);
-        const id = param.data.id;
-        Axios.get(`https://ka-users-api.herokuapp.com/users/${id}`).then(
-          (res) => {
-            if (res.status === 200) {
-              history.push("/user-feedback");
-            }
-          }
-        );
-      }}
-    />
+    <div>
+      <UsersHeader />
+      <DataGrid
+        autoHeight
+        pagination
+        columns={columns}
+        loading={userList.length === 0 ? true : false}
+        rows={userList}
+        pageSize={10}
+        rowsPerPageOptions={[10, 50, 100]}
+        onRowClick={(param) => {
+          const id = param.data.id;
+          history.push(`/user-feedbacks/${id}`);
+        }}
+      />
+    </div>
   );
 };
 
