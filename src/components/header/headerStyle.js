@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderStyle = styled.div`
@@ -23,4 +24,8 @@ export const HeaderStyle = styled.div`
     bottom: 4px;
     border-bottom: 1px solid white;
   }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
 `;

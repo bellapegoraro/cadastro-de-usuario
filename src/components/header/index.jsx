@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
-import { HeaderStyle } from "./headerStyle";
+import { HeaderStyle, StyledLink } from "./headerStyle";
 
 const Header = () => {
   return (
     <HeaderStyle>
-      <Link to="/register">
+      <StyledLink to="/register">
         <span>Novo usuário</span>
-      </Link>
-      <Link to="/">
+      </StyledLink>
+      <StyledLink to="/">
         <span>Login</span>
-      </Link>
+      </StyledLink>
     </HeaderStyle>
   );
 };

@@ -2,14 +2,20 @@ import { DataGrid } from "@material-ui/data-grid";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Axios from "axios";
-import { UserStyled } from "./userStyle";
+import { UserStyled, StyledDataGrid } from "./userStyle";
 import UsersHeader from "./UsersHeader";
 
 const columns = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "name", headerName: "Name", width: 250 },
-  { field: "email", headerName: "E-mail", width: 250 },
-  { field: "feedback", headerName: "Feedback", width: 250 },
+  { field: "email", headerName: "E-mail", width: 300 },
+  {
+    field: "feedback",
+    headerName: "Feedback",
+    width: 200,
+    valueGetter: () => "Novo Feedback",
+  },
+  ,
 ];
 
 const Users = ({ auth }) => {
@@ -42,7 +48,7 @@ const Users = ({ auth }) => {
   return (
     <div>
       <UsersHeader />
-      <DataGrid
+      <StyledDataGrid
         autoHeight
         pagination
         columns={columns}
