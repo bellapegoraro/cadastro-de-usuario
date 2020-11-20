@@ -6,6 +6,7 @@ import { Switch, Link, Route, useHistory } from "react-router-dom";
 import Axios from "axios";
 import Users from "./pages/Users";
 import UserFeedbacks from "./pages/UserFeedbacks";
+import FeedbackForm from "./pages/FeedbackForm";
 
 const App = () => {
   const history = useHistory();
@@ -33,31 +34,24 @@ const App = () => {
   useEffect(() => {}, []);
 
   return (
-    <div className="App">
-      <header>
-        <Link className="links" to="/register">
-          Novo usuário
-        </Link>
-        <Link className="links" to="/">
-          Login
-        </Link>
-      </header>
-      <div>
-        <Switch>
-          <Route path="/register">
-            <UserForm />
-          </Route>
-          <Route exact path="/">
-            <Login callback={CheckingLoggedIn} />
-          </Route>
-          <Route exact path="/users">
-            <Users auth={authenticate} />
-          </Route>
-          <Route exact path="/user-feedback/:id">
-            <UserFeedbacks token={token} />
-          </Route>
-        </Switch>
-      </div>
+    <div>
+      <Switch>
+        <Route path="/register">
+          <UserForm />
+        </Route>
+        <Route exact path="/">
+          <Login callback={CheckingLoggedIn} />
+        </Route>
+        <Route exact path="/users">
+          <Users auth={authenticate} />
+        </Route>
+        <Route exact path="/user-feedbacks/:id">
+          <UserFeedbacks token={token} />
+        </Route>
+        <Route exact path="/new-feedback/:id">
+          <FeedbackForm />
+        </Route>
+      </Switch>
     </div>
   );
 };

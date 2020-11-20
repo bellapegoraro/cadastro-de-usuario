@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Axios from "axios";
-
+import Header from "../../components/header";
 import { LoginContainer } from "./loginStyle";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -54,54 +54,57 @@ const Login = ({ callback }) => {
   }, []);
 
   return (
-    <LoginContainer>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit(handleForm)}>
-        <TextField
-          margin="normal"
-          variant="outlined"
-          name="user"
-          label="Usuário"
-          error={!!errors.user}
-          helperText={errors.user?.message}
-          size="small"
-          inputRef={register}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <AccountCircle />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          margin="normal"
-          variant="outlined"
-          name="password"
-          label="Senha"
-          error={!!errors.password}
-          helperText={errors.password?.message}
-          size="small"
-          inputRef={register}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <LockIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-        {error.status && <span>{error.message}</span>}
-        <Button
-          type="submit"
-          variant="contained"
-          size="small"
-          className={classes.margin}
-        >
-          Entrar
-        </Button>
-      </form>
-    </LoginContainer>
+    <>
+      <Header />
+      <LoginContainer>
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit(handleForm)}>
+          <TextField
+            margin="normal"
+            variant="outlined"
+            name="user"
+            label="Usuário"
+            error={!!errors.user}
+            helperText={errors.user?.message}
+            size="small"
+            inputRef={register}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <AccountCircle />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            margin="normal"
+            variant="outlined"
+            name="password"
+            label="Senha"
+            error={!!errors.password}
+            helperText={errors.password?.message}
+            size="small"
+            inputRef={register}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <LockIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          {error.status && <span>{error.message}</span>}
+          <Button
+            type="submit"
+            variant="contained"
+            size="small"
+            className={classes.margin}
+          >
+            Entrar
+          </Button>
+        </form>
+      </LoginContainer>
+    </>
   );
 };
 

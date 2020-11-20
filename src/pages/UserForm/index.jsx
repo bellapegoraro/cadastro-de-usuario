@@ -14,6 +14,7 @@ import EmailIcon from "@material-ui/icons/Email";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import Header from "../../components/header";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -72,105 +73,108 @@ const UserForm = () => {
       });
   };
   return (
-    <UserFormContainer className="divUserForm">
-      <h2>Novo usuário: </h2>
-      <form className="userForm" onSubmit={handleSubmit(handleForm)}>
-        <TextField
-          margin="normal"
-          variant="outlined"
-          name="user"
-          label="Usuário"
-          error={!!errors.user}
-          helperText={errors.user?.message}
-          size="small"
-          inputRef={register}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <AccountCircle />
-              </InputAdornment>
-            ),
-          }}
-        />
-        {/* {error && <span>Usuário já utilizado</span>} */}
-        <TextField
-          margin="normal"
-          variant="outlined"
-          name="name"
-          label="Nome"
-          error={!!errors.name}
-          helperText={errors.name?.message}
-          size="small"
-          inputRef={register}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <FaceIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          margin="normal"
-          variant="outlined"
-          name="email"
-          label="Email"
-          error={!!errors.email}
-          helperText={errors.email?.message}
-          size="small"
-          inputRef={register}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <EmailIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          margin="normal"
-          variant="outlined"
-          name="password"
-          label="Senha"
-          error={!!errors.password}
-          helperText={errors.password?.message}
-          size="small"
-          inputRef={register}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <LockOpenIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <TextField
-          margin="normal"
-          variant="outlined"
-          name="confirmPassword"
-          label="Confirmar senha"
-          error={!!errors.confirmPassword}
-          helperText={errors.confirmPassword?.message}
-          size="small"
-          inputRef={register}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <LockIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          size="small"
-          className={classes.margin}
-        >
-          Cadastrar
-        </Button>
-      </form>
-    </UserFormContainer>
+    <>
+      <Header></Header>
+      <UserFormContainer className="divUserForm">
+        <h2>Novo usuário: </h2>
+        <form className="userForm" onSubmit={handleSubmit(handleForm)}>
+          <TextField
+            margin="normal"
+            variant="outlined"
+            name="user"
+            label="Usuário"
+            error={!!errors.user}
+            helperText={errors.user?.message}
+            size="small"
+            inputRef={register}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <AccountCircle />
+                </InputAdornment>
+              ),
+            }}
+          />
+          {/* {error && <span>Usuário já utilizado</span>} */}
+          <TextField
+            margin="normal"
+            variant="outlined"
+            name="name"
+            label="Nome"
+            error={!!errors.name}
+            helperText={errors.name?.message}
+            size="small"
+            inputRef={register}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <FaceIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            margin="normal"
+            variant="outlined"
+            name="email"
+            label="Email"
+            error={!!errors.email}
+            helperText={errors.email?.message}
+            size="small"
+            inputRef={register}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <EmailIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            margin="normal"
+            variant="outlined"
+            name="password"
+            label="Senha"
+            error={!!errors.password}
+            helperText={errors.password?.message}
+            size="small"
+            inputRef={register}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <LockOpenIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            margin="normal"
+            variant="outlined"
+            name="confirmPassword"
+            label="Confirmar senha"
+            error={!!errors.confirmPassword}
+            helperText={errors.confirmPassword?.message}
+            size="small"
+            inputRef={register}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <LockIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            size="small"
+            className={classes.margin}
+          >
+            Cadastrar
+          </Button>
+        </form>
+      </UserFormContainer>
+    </>
   );
 };
 
