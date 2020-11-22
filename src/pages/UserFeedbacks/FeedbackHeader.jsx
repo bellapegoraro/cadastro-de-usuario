@@ -19,6 +19,11 @@ const Button = styled.button`
   text-transform: uppercase;
   font-weight: bolder;
   color: #444444;
+  :hover {
+    text-decoration: underline;
+    color: white;
+    cursor: pointer;
+  }
 `;
 
 export default FeedbackHeader;

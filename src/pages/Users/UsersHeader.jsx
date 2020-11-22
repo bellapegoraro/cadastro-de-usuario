@@ -5,30 +5,30 @@ const UsersHeader = () => {
   const history = useHistory();
   return (
     <HeaderStyle>
-      <button
+      <Button
         onClick={() => {
           localStorage.clear();
           history.push("/");
         }}
       >
         Logout
-      </button>
+      </Button>
     </HeaderStyle>
   );
 };
 
-// const Button = styled.button`
-//   border: none;
-//   background-color: #00d1cd;
-//   text-transform: uppercase;
-//   font-weight: bolder;
-//   color: #444444;
+const Button = styled.button`
+  border: none;
+  background-color: #00d1cd;
+  text-transform: uppercase;
+  font-weight: bolder;
+  color: #444444;
 
-//   Button:hover {
-//     color: white;
-//     cursor: pointer;
-//     bottom: 4px;
-//     border-bottom: 1px solid white;
-//   }
+  :hover {
+    text-decoration: underline;
+    color: white;
+    cursor: pointer;
+  }
+`;
 
 export default UsersHeader;

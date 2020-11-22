@@ -6,16 +6,15 @@ import { UserStyled, StyledDataGrid } from "./userStyle";
 import UsersHeader from "./UsersHeader";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "name", headerName: "Name", width: 250 },
-  { field: "email", headerName: "E-mail", width: 300 },
+  { field: "id", headerName: "ID", width: 150 },
+  { field: "name", headerName: "Name", width: 300 },
+  { field: "email", headerName: "E-mail", width: 550 },
   {
     field: "feedback",
     headerName: "Feedback",
     width: 200,
     valueGetter: () => "Novo Feedback",
   },
-  ,
 ];
 
 const Users = ({ auth }) => {

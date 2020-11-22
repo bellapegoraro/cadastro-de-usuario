@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { HeaderStyle, StyledLink } from "./headerStyle";
 
 const Header = () => {

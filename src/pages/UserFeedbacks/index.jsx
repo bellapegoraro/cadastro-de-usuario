@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import Axios from "axios";
 import { DataGrid } from "@material-ui/data-grid";
 import FeedbackHeader from "./FeedbackHeader";
+import { StyledDataGrid } from "../Users/userStyle";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", width: 150 },
   { field: "name", headerName: "Name", width: 250 },
-  { field: "comment", headerName: "Comment", width: 250 },
+  { field: "comment", headerName: "Comment", width: 450 },
   { field: "grade", headerName: "Grade", width: 250 },
 ];
 
@@ -32,7 +33,7 @@ const UserFeedbacks = () => {
   return (
     <>
       <FeedbackHeader id={id} />
-      <DataGrid
+      <StyledDataGrid
         autoHeight
         pagination
         columns={columns}

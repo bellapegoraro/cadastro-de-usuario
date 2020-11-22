@@ -8,7 +8,7 @@ export const UserStyled = styled.div`
 `;
 
 export const StyledDataGrid = styled(DataGrid)`
-  margin: 0 auto;
-  max-width: 80vw;
+  width: 100vw;
   background-color: white;
+  cursor: pointer;
 `;
