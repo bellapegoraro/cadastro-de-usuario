@@ -6,6 +6,7 @@ const FeedbackHeader = ({ id }) => {
   const history = useHistory();
   return (
     <HeaderStyle>
+      <Button onClick={() => history.push(`/users`)}>Voltar</Button>
       <Button onClick={() => history.push(`/new-feedback/${id}`)}>
         Novo Feedback
       </Button>
